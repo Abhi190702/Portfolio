@@ -1,97 +1,70 @@
-![Portfolio Preview](public/assets/projects-screenshots/sony-landing/landing.png)
+# Abhijeet Ranjan Portfolio
 
-# 🚀 My Portfolio Website
+![Portfolio home preview](public/assets/seo/readme-preview.png)
 
-Welcome to the repository for my personal portfolio website! 🎉 This project is a culmination of creativity, technology, and my dedication to showcasing my skills, projects, and personality in a visually stunning and interactive manner.
+A polished personal portfolio for Abhijeet Ranjan with an interactive 3D room, project dashboard, skills showcase, and contact experience. The site is built to feel smooth, responsive, and ready for professional deployment.
 
-### Live preview: https://www.abhijitzende.com/
+## Features
 
+- Interactive 3D room experience with clear controls and object interactions.
+- Project dashboard with screenshots, descriptions, and repository links.
+- Responsive sections for home, about, projects, skills, and contact.
+- Smooth motion using GSAP and Framer Motion.
+- Optimized media loading for faster first paint and smoother browsing.
+- Contact form support through Resend.
 
-## 🔥 Features
+## Tech Stack
 
-Here are the key highlights of my portfolio:
+- Next.js 14
+- React
+- Tailwind CSS
+- Three.js
+- GSAP
+- Framer Motion
+- Spline
+- Resend
 
-### 🎹 **3D Interactive Animations**
-- Features a custom-made interactive keyboard built with **Spline**.
-- Each keycap represents a skill and reveals titles and descriptions on hover for an immersive experience.
-- Smooth, responsive 3D interactions that captivate visitors.
+## Project Structure
 
-### ✨ **Slick Interactions & Animations**
-- Powered by **GSAP** and **Framer Motion**, delivering buttery-smooth animations on scroll, hover, and element reveals.
-- Creative motion designs that enhance storytelling and keep users engaged.
+```text
+src/                 Application source code
+public/assets/       Images, 3D assets, project media, and SEO previews
+netlify.toml         Netlify build configuration
+.netlifyignore       Files excluded from Netlify deployment
+```
 
-### 🌌 **Space-Themed Design**
-- Particles floating on a dark, cosmic background simulate an outer-space vibe.
-- Adds a unique and futuristic look to the portfolio.
+## Getting Started
 
-### 📱 **Responsive Design**
-- Fully responsive layout ensures the website looks and functions beautifully on all devices.
-- Optimized for both desktop and mobile experiences.
+```bash
+git clone https://github.com/Abhi190702/Portfolio.git
+cd Portfolio
+npm install
+npm run dev
+```
 
-### 🧠 **Innovative Web Design**
-- Combines cutting-edge technology with an intuitive user experience.
-- Creative use of animations and visuals to push the boundaries of modern web design.
+Open the local site at:
 
-## 🛠️ Tech Stack
+```text
+http://localhost:3000
+```
 
-The portfolio website is built using the following tools and technologies:
+## Environment Variables
 
-- **Frontend:** Next.js, React, Tailwind CSS, Shadcn, Aceternity UI
-- **Animations:** GSAP, Framer Motion, Spline Runtime
-- **Other Tools:** Resend, Socket.io, Zod
+Create a `.env.local` file in the project root when running locally:
 
-## 🌟 Getting Started
+```env
+RESEND_API_KEY=your_resend_api_key_here
+```
 
-1. Clone this repository:
-   ```bash
-   git clone <your-repository-url>
-   ```
+Keep this key private and add it directly in the deployment platform settings for production.
 
-2. Navigate to the project directory:
-   ```bash
-   cd purav_portfolio
-   ```
+## Netlify Deployment
 
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
+Use these settings in Netlify:
 
-4. Set up environment variables:
-   ```bash
-   # Create a .env.local file in the root directory
-   touch .env.local
+- Build command: `npm run build`
+- Publish directory: `.next`
+- Node version: `20`
+- Environment variable: `RESEND_API_KEY`
 
-   # Add your Resend API key
-   RESEND_API_KEY=your_resend_api_key_here
-   ```
-
-5. Start the development server:
-   ```bash
-   npm run dev
-   ```
-
-6. Open your browser and navigate to:
-   ```
-   http://localhost:3000
-   ```
-
-## 🚀 Deployment
-
-This project is deployed using **Vercel** for its blazing-fast performance and ease of use. You can view the live site [here](link).
-
-### Setting up Resend API on Vercel
-
-1. Sign up for a [Resend](https://resend.com) account and get your API key
-2. Go to your Vercel project settings
-3. Navigate to the "Environment Variables" section
-4. Add a new environment variable:
-   - Name: `RESEND_API_KEY`
-   - Value: Your Resend API key
-5. Save the changes and redeploy your application
-
-Note: Make sure to keep your API key secret and never commit it to your repository.
-
----
-
-⭐ If you like this project, don't forget to give it a star!
+The repository includes `netlify.toml`, so Netlify can detect the Next.js build configuration automatically.
