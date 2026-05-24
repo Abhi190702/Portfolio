@@ -10,8 +10,7 @@ const config = {
     "I am building practical projects in web development and cybersecurity while exploring secure systems through research.",
   location: "Gwalior, India",
   phone: "+91 8308509180",
-  resumeLink:
-    "mailto:abhijitzende75@gmail.com?subject=Resume%20Request",
+  resumeLink: "/resume/Abhijeet_Ranjan_Resume.pdf",
   keywords: [
     "Abhijeet",
     "Abhijeet Ranjan",
@@ -28,7 +27,7 @@ const config = {
   ],
   author: "Abhijeet Ranjan",
   email: "abhijitzende75@gmail.com",
-  site: "https://www.abhijitzende.com/",
+  site: "https://abhijeeet.netlify.app",
 
   get ogImg() {
     return this.site + "/assets/seo/og-image.png";
