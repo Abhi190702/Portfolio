@@ -1,0 +1,5 @@
+node_modules
+.next/cache
+preview_video.gif
+preview_video.mp4
+*.log
