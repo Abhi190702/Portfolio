@@ -43,14 +43,26 @@ const Modall = ({ project }: { project: Project }) => {
       <Modal>
         <ModalTrigger className="group/modal-btn block w-full overflow-visible rounded-lg bg-transparent p-0 text-left">
           <div className="relative min-h-[390px] w-full overflow-hidden rounded-lg border border-white/10 bg-black shadow-xl shadow-black/20 transition-all duration-300 group-hover/modal-btn:-translate-y-1 group-hover/modal-btn:border-white/25">
-            <div className="relative h-[230px] w-full overflow-hidden bg-zinc-950">
+            <div
+              className="relative h-[230px] w-full overflow-hidden"
+              style={{
+                background:
+                  project.id === "deploy-sense"
+                    ? "linear-gradient(135deg, #0d1117 0%, #111827 60%, #0a1628 100%)"
+                    : "#09090b",
+              }}
+            >
               <Image
                 src={project.src}
                 alt={`${project.title} screenshot`}
                 fill
                 sizes="(min-width: 768px) 33vw, 100vw"
-                quality={70}
-                className="object-cover transition-transform duration-500 group-hover/modal-btn:scale-[1.04]"
+                quality={85}
+                className={`transition-transform duration-500 group-hover/modal-btn:scale-[1.04] ${
+                  project.id === "deploy-sense"
+                    ? "object-contain p-6"
+                    : "object-cover"
+                }`}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
               <div className="absolute left-4 top-4 rounded-md border border-white/15 bg-black/60 px-2 py-1 font-mono text-[11px] text-white/70 backdrop-blur">
@@ -106,14 +118,22 @@ const ProjectContents = ({ project }: { project: Project }) => {
       <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
         {project.title}
       </h4>
-      <div className="relative mx-auto mb-8 aspect-video w-full max-w-3xl overflow-hidden rounded-lg border border-neutral-200 bg-black dark:border-neutral-800">
+      <div
+        className="relative mx-auto mb-8 aspect-video w-full max-w-3xl overflow-hidden rounded-lg border border-neutral-200 dark:border-neutral-800"
+        style={{
+          background:
+            project.id === "deploy-sense"
+              ? "linear-gradient(135deg, #0d1117 0%, #111827 60%, #0a1628 100%)"
+              : "#000",
+        }}
+      >
         <Image
           src={project.src}
           alt={`${project.title} screenshot`}
           fill
           sizes="(min-width: 768px) 768px, 100vw"
-          quality={75}
-          className="object-cover"
+          quality={90}
+          className={project.id === "deploy-sense" ? "object-contain p-10" : "object-cover"}
           priority={false}
         />
       </div>
