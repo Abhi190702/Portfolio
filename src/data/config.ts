@@ -10,7 +10,7 @@ const config = {
     "I am building practical projects in web development and cybersecurity while exploring secure systems through research.",
   location: "Gwalior, India",
   phone: "+91 8308509180",
-  resumeLink: "/resume/Abhijeet_Ranjan_Resume.pdf",
+  resumeLink: "/resume.pdf",
   keywords: [
     "Abhijeet",
     "Abhijeet Ranjan",

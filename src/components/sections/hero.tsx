@@ -83,18 +83,19 @@ const HeroSection = () => {
                 </BlurIn>
               </div>
               <div className="mt-8 md:ml-2 flex flex-col gap-3">
-                <Link
-                  href={config.resumeLink}
-                  target="_blank"
-                  className="flex-1"
-                >
-                  <BoxReveal delay={2} width="100%" >
+                <BoxReveal delay={2} width="100%" >
+                  <a
+                    href={config.resumeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 block"
+                  >
                     <Button className="flex items-center gap-2 w-full">
                       <File size={24} />
                       <p>Get Resume</p>
                     </Button>
-                  </BoxReveal>
-                </Link>
+                  </a>
+                </BoxReveal>
                 <div className="md:self-start flex gap-3">
                   <Tooltip delayDuration={300}>
                     <TooltipTrigger asChild>
