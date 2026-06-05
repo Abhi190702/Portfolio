@@ -1,0 +1,18 @@
+<svg width="1280" height="760" viewBox="0 0 1280 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="760" fill="#070713"/>
+  <rect x="54" y="54" width="1172" height="652" rx="34" fill="#0d0b1f" stroke="#a78bfa" stroke-opacity="0.42" stroke-width="2"/>
+  <g opacity="0.28" stroke="#c4b5fd">
+    <path d="M194 220H514"/>
+    <path d="M194 278H620"/>
+    <path d="M194 336H474"/>
+    <path d="M194 394H590"/>
+  </g>
+  <rect x="686" y="156" width="382" height="382" rx="32" fill="#111827" stroke="#a78bfa" stroke-opacity="0.45"/>
+  <circle cx="877" cy="347" r="112" fill="#a78bfa" fill-opacity="0.12" stroke="#a78bfa" stroke-opacity="0.55" stroke-width="3"/>
+  <circle cx="877" cy="347" r="42" fill="#a78bfa" fill-opacity="0.24"/>
+  <path d="M877 235V187M877 507V459M765 347H717M1037 347H989M798 268L764 234M956 426L990 460M956 268L990 234M798 426L764 460" stroke="#a78bfa" stroke-width="8" stroke-linecap="round"/>
+  <text x="112" y="126" fill="#ddd6fe" font-family="monospace" font-size="30" font-weight="800">CTX</text>
+  <text x="112" y="510" fill="#f8fafc" font-family="monospace" font-size="76" font-weight="800">Portable</text>
+  <text x="112" y="592" fill="#f8fafc" font-family="monospace" font-size="76" font-weight="800">AI memory.</text>
+  <text x="704" y="604" fill="#c4b5fd" font-family="monospace" font-size="25" font-weight="700">context / repos / workflows</text>
+</svg>

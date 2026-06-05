@@ -125,34 +125,6 @@ const projects: Project[] = [
     },
   },
   {
-    id: "code-streak-lab",
-    category: "DSA Analytics",
-    title: "Code Streak Lab",
-    src: "/assets/projects-screenshots/code-streak-lab/landing.svg",
-    screenshots: ["/assets/projects-screenshots/code-streak-lab/landing.svg"],
-    live: "https://github.com/Abhi190702/code-streak-lab",
-    github: "https://github.com/Abhi190702/code-streak-lab",
-    accent: "#22c55e",
-    summary:
-      "A CP and DSA streak tracker that logs solved problems, generates README stats, graphs topic progress, and surfaces Codeforces analytics.",
-    skills: {
-      frontend: [],
-      backend: [PROJECT_SKILLS.python],
-    },
-    get content() {
-      return (
-        <div>
-          <TypographyP className="font-mono">
-            Code Streak Lab turns daily problem solving into measurable progress:
-            streaks, topic coverage, README-ready stats, and Codeforces-focused
-            analytics for consistent practice.
-          </TypographyP>
-          <ProjectsLinks live={this.live} repo={this.github} />
-        </div>
-      );
-    },
-  },
-  {
     id: "ghost-gate",
     category: "Cybersecurity",
     title: "GhostGate",
@@ -181,27 +153,27 @@ const projects: Project[] = [
     },
   },
   {
-    id: "cricscope",
-    category: "Analytics Platform",
-    title: "CricScope",
-    src: "/assets/projects-screenshots/cricscope/landing.svg",
-    screenshots: ["/assets/projects-screenshots/cricscope/landing.svg"],
-    live: "https://github.com/Abhi190702/CricScope",
-    github: "https://github.com/Abhi190702/CricScope",
-    accent: "#facc15",
+    id: "ctx",
+    category: "AI Workflow Tool",
+    title: "ctx",
+    src: "/assets/projects-screenshots/ctx/landing.svg",
+    screenshots: ["/assets/projects-screenshots/ctx/landing.svg"],
+    live: "https://github.com/Abhi190702/ctx",
+    github: "https://github.com/Abhi190702/ctx",
+    accent: "#a78bfa",
     summary:
-      "An interactive cricket analytics platform for insights, visualizations, and prediction-focused exploration.",
+      "Portable memory for AI workflows, built to keep context organized, reusable, and easy to carry across development sessions.",
     skills: {
-      frontend: [PROJECT_SKILLS.react, PROJECT_SKILLS.next, PROJECT_SKILLS.tailwind],
-      backend: [PROJECT_SKILLS.python],
+      frontend: [PROJECT_SKILLS.ts, PROJECT_SKILLS.node],
+      backend: [PROJECT_SKILLS.ts, PROJECT_SKILLS.node],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono">
-            CricScope packages cricket data into a cleaner analytics experience,
-            helping users scan trends, compare performance, and reason about
-            match insights visually.
+            ctx is a portable memory layer for AI-assisted work. It focuses on
+            keeping useful context structured, reusable, and available when
+            moving between tools, repos, or coding sessions.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
         </div>
