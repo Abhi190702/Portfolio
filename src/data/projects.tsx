@@ -11,7 +11,6 @@ import {
   SiKubernetes,
   SiPython,
   SiTailwindcss,
-  SiThreedotjs,
   SiTypescript,
 } from "react-icons/si";
 
@@ -22,6 +21,8 @@ const ProjectsLinks = ({
   live: string;
   repo?: string;
 }) => {
+  const hasSeparateSource = Boolean(repo && repo !== live);
+
   return (
     <div className="my-6 flex flex-col items-center justify-start gap-3 md:flex-row">
       <Link
@@ -31,16 +32,16 @@ const ProjectsLinks = ({
         href={live}
       >
         <Button variant="default" size="sm">
-          View Project
+          {hasSeparateSource ? "View Live" : "Open Repository"}
           <ArrowUpRight className="ml-3 h-5 w-5" />
         </Button>
       </Link>
-      {repo && repo !== live ? (
+      {hasSeparateSource ? (
         <Link
           className="flex gap-2 font-mono underline"
           rel="noopener"
           target="_new"
-          href={repo}
+          href={repo as string}
         >
           <Button variant="outline" size="sm">
             Source
@@ -73,7 +74,6 @@ const PROJECT_SKILLS = {
   js: skill("JavaScript", <SiJavascript />),
   ts: skill("TypeScript", <SiTypescript />),
   tailwind: skill("Tailwind", <SiTailwindcss />),
-  three: skill("Three.js", <SiThreedotjs />),
   docker: skill("Docker", <SiDocker />),
   python: skill("Python", <SiPython />),
   css: skill("CSS3", <SiCss3 />),
@@ -97,7 +97,7 @@ export type Project = {
 const projects: Project[] = [
   {
     id: "deploy-sense",
-    category: "DevOps / CLI Tool",
+    category: "DevOps CLI",
     title: "DeploySense",
     src: "/assets/projects-screenshots/deploy-sense/landing.png",
     screenshots: ["/assets/projects-screenshots/deploy-sense/landing.png"],
@@ -105,7 +105,7 @@ const projects: Project[] = [
     github: "https://github.com/Abhi190702/DeploySense",
     accent: "#f97316",
     summary:
-      "Open-source DevOps intelligence CLI. Scans Dockerfiles, Kubernetes, GitHub Actions & Compose configs before deployments break production. Returns health scores, risk analysis, and auto-fixes.",
+      "Open-source DevOps intelligence CLI that scans Dockerfiles, Kubernetes, GitHub Actions, and Compose configs before deployments break production.",
     skills: {
       frontend: [PROJECT_SKILLS.next, PROJECT_SKILLS.ts, PROJECT_SKILLS.tailwind],
       backend: [PROJECT_SKILLS.node, PROJECT_SKILLS.docker, PROJECT_SKILLS.kubernetes],
@@ -114,12 +114,38 @@ const projects: Project[] = [
       return (
         <div>
           <TypographyP className="font-mono">
-            DeploySense is an open-source DevOps intelligence CLI that catches
-            deployment mistakes before they wake you up at 3 AM. It scans
-            Dockerfiles, GitHub Actions workflows, Kubernetes manifests, Docker
-            Compose files, and deployment logs — returning health scores, risk
-            categories, plain-English explanations, and copy-paste fixes. Ships
-            with 54+ rules across 5 scanners and a live web dashboard.
+            DeploySense scans Dockerfiles, GitHub Actions workflows, Kubernetes
+            manifests, Docker Compose files, and deployment logs. It returns
+            health scores, risk categories, plain-English explanations, and
+            copy-paste fixes with a live web dashboard.
+          </TypographyP>
+          <ProjectsLinks live={this.live} repo={this.github} />
+        </div>
+      );
+    },
+  },
+  {
+    id: "code-streak-lab",
+    category: "DSA Analytics",
+    title: "Code Streak Lab",
+    src: "/assets/projects-screenshots/code-streak-lab/landing.svg",
+    screenshots: ["/assets/projects-screenshots/code-streak-lab/landing.svg"],
+    live: "https://github.com/Abhi190702/code-streak-lab",
+    github: "https://github.com/Abhi190702/code-streak-lab",
+    accent: "#22c55e",
+    summary:
+      "A CP and DSA streak tracker that logs solved problems, generates README stats, graphs topic progress, and surfaces Codeforces analytics.",
+    skills: {
+      frontend: [],
+      backend: [PROJECT_SKILLS.python],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono">
+            Code Streak Lab turns daily problem solving into measurable progress:
+            streaks, topic coverage, README-ready stats, and Codeforces-focused
+            analytics for consistent practice.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
         </div>
@@ -132,22 +158,22 @@ const projects: Project[] = [
     title: "GhostGate",
     src: "/assets/projects-screenshots/ghost-gate/landing.png",
     screenshots: ["/assets/projects-screenshots/ghost-gate/landing.png"],
-    live: "https://github.com/Abhi190702/GhostGate.git",
-    github: "https://github.com/Abhi190702/GhostGate.git",
+    live: "https://github.com/Abhi190702/GhostGate",
+    github: "https://github.com/Abhi190702/GhostGate",
     accent: "#00d4ff",
     summary:
-      "A cybersecurity-focused project centered on ethical reconnaissance, defensive awareness, and practical security tooling.",
+      "A virtual privacy router lab for Linux networking, NAT, DNS filtering, firewalls, Tor routing, WireGuard VPN, and traffic monitoring.",
     skills: {
-      frontend: [PROJECT_SKILLS.js, PROJECT_SKILLS.react],
-      backend: [PROJECT_SKILLS.node, PROJECT_SKILLS.python],
+      frontend: [PROJECT_SKILLS.js],
+      backend: [PROJECT_SKILLS.python, PROJECT_SKILLS.docker],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono">
-            GhostGate represents Abhijeet&apos;s cybersecurity interest: dark,
-            technical, and built around practical awareness of how systems
-            behave under inspection.
+            GhostGate is a practical privacy engineering lab for learning how
+            network traffic moves, where it can be filtered, and how defensive
+            routing tools fit together.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
         </div>
@@ -155,31 +181,27 @@ const projects: Project[] = [
     },
   },
   {
-    id: "law-portfolio",
-    category: "Client Portfolio",
-    title: "Law Portfolio",
-    src: "/assets/projects-screenshots/law-portfolio/landing.png",
-    screenshots: ["/assets/projects-screenshots/law-portfolio/landing.png"],
-    live: "https://github.com/Abhi190702/Law-Portfolio.git",
-    github: "https://github.com/Abhi190702/Law-Portfolio.git",
-    accent: "#7c3aed",
+    id: "cricscope",
+    category: "Analytics Platform",
+    title: "CricScope",
+    src: "/assets/projects-screenshots/cricscope/landing.svg",
+    screenshots: ["/assets/projects-screenshots/cricscope/landing.svg"],
+    live: "https://github.com/Abhi190702/CricScope",
+    github: "https://github.com/Abhi190702/CricScope",
+    accent: "#facc15",
     summary:
-      "A professional portfolio site for a law-focused brand, emphasizing trust, clarity, and responsive presentation.",
+      "An interactive cricket analytics platform for insights, visualizations, and prediction-focused exploration.",
     skills: {
-      frontend: [
-        PROJECT_SKILLS.ts,
-        PROJECT_SKILLS.react,
-        PROJECT_SKILLS.tailwind,
-      ],
-      backend: [],
+      frontend: [PROJECT_SKILLS.react, PROJECT_SKILLS.next, PROJECT_SKILLS.tailwind],
+      backend: [PROJECT_SKILLS.python],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono">
-            Law Portfolio is a focused professional site with clean page
-            structure, simple navigation, and polished presentation for a legal
-            service audience.
+            CricScope packages cricket data into a cleaner analytics experience,
+            helping users scan trends, compare performance, and reason about
+            match insights visually.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
         </div>
@@ -192,21 +214,50 @@ const projects: Project[] = [
     title: "Sony Product Landing Page",
     src: "/assets/projects-screenshots/sony-landing/landing.png",
     screenshots: ["/assets/projects-screenshots/sony-landing/landing.png"],
-    live: "https://github.com/Abhi190702/SONY-Product-landing-website.git",
-    github: "https://github.com/Abhi190702/SONY-Product-landing-website.git",
+    live: "https://github.com/Abhi190702/SONY-Product-landing-website",
+    github: "https://github.com/Abhi190702/SONY-Product-landing-website",
     accent: "#e2e8f0",
     summary:
-      "A polished product landing page concept with a premium visual direction and clean frontend execution.",
+      "A premium Sony WH-1000XM6 product landing page built with Next.js, TypeScript, Tailwind CSS, GSAP, Lenis, and motion-heavy sections.",
     skills: {
-      frontend: [PROJECT_SKILLS.react, PROJECT_SKILLS.js, PROJECT_SKILLS.css],
+      frontend: [PROJECT_SKILLS.next, PROJECT_SKILLS.ts, PROJECT_SKILLS.tailwind],
       backend: [],
     },
     get content() {
       return (
         <div>
           <TypographyP className="font-mono">
-            A product-focused frontend build for a Sony-style landing page,
-            included here as one of the three highlighted works in the room.
+            A product-focused frontend build with premium motion, dense visual
+            sections, and a polished landing-page structure for a flagship audio
+            product.
+          </TypographyP>
+          <ProjectsLinks live={this.live} repo={this.github} />
+        </div>
+      );
+    },
+  },
+  {
+    id: "law-portfolio",
+    category: "Client Portfolio",
+    title: "Law Portfolio",
+    src: "/assets/projects-screenshots/law-portfolio/landing.png",
+    screenshots: ["/assets/projects-screenshots/law-portfolio/landing.png"],
+    live: "https://github.com/Abhi190702/Law-Portfolio",
+    github: "https://github.com/Abhi190702/Law-Portfolio",
+    accent: "#7c3aed",
+    summary:
+      "A 3D law portfolio website built with GSAP, ScrollTrigger, and Vanilla JS for a clean professional brand presence.",
+    skills: {
+      frontend: [PROJECT_SKILLS.js, PROJECT_SKILLS.css],
+      backend: [],
+    },
+    get content() {
+      return (
+        <div>
+          <TypographyP className="font-mono">
+            Law Portfolio presents a legal brand with motion, clarity, and a
+            formal visual tone while keeping the structure straightforward for
+            visitors.
           </TypographyP>
           <ProjectsLinks live={this.live} repo={this.github} />
         </div>

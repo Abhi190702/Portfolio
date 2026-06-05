@@ -175,53 +175,56 @@ function makeProjectsDashboardTexture() {
   ctx.font = "500 20px monospace";
   ctx.fillText("click monitor to focus - choose a project from the window", 430, 48);
 
-  ROOM_PROJECTS.forEach((project, index) => {
-    const x = 46 + index * 438;
-    const y = 138;
+  ROOM_PROJECTS.slice(0, 4).forEach((project, index) => {
+    const col = index % 2;
+    const row = Math.floor(index / 2);
+    const x = 58 + col * 646;
+    const y = 118 + row * 284;
+    const width = 588;
+    const height = 244;
     ctx.fillStyle = "rgba(3, 7, 18, 0.82)";
-    ctx.fillRect(x, y, 386, 520);
+    ctx.fillRect(x, y, width, height);
     ctx.strokeStyle = `${project.accent}aa`;
-    ctx.lineWidth = 4;
-    ctx.strokeRect(x, y, 386, 520);
+    ctx.lineWidth = 3;
+    ctx.strokeRect(x, y, width, height);
 
     ctx.fillStyle = `${project.accent}22`;
-    ctx.fillRect(x + 24, y + 26, 338, 170);
+    ctx.fillRect(x + 22, y + 24, 132, 132);
     ctx.strokeStyle = `${project.accent}66`;
     ctx.lineWidth = 2;
-    ctx.strokeRect(x + 24, y + 26, 338, 170);
+    ctx.strokeRect(x + 22, y + 24, 132, 132);
 
     ctx.fillStyle = project.accent;
-    ctx.font = "700 26px monospace";
-    ctx.fillText(project.category, x + 28, y + 244);
+    ctx.font = "700 20px monospace";
+    ctx.fillText(project.category, x + 178, y + 58);
 
     ctx.fillStyle = ROOM.text;
-    ctx.font = "800 34px monospace";
-    const titleSize = getFittedFontSize(ctx, project.title, 320, 34, 22);
+    const titleSize = getFittedFontSize(ctx, project.title, 350, 34, 22);
     ctx.font = `800 ${titleSize}px monospace`;
-    ctx.fillText(project.title, x + 28, y + 300);
+    ctx.fillText(project.title, x + 178, y + 104);
 
     ctx.fillStyle = "rgba(226, 232, 240, 0.72)";
-    ctx.font = "500 20px monospace";
+    ctx.font = "500 17px monospace";
     const words = project.summary.split(" ");
     let line = "";
-    let lineY = y + 352;
+    let lineY = y + 142;
     words.forEach((word) => {
       const next = `${line}${word} `;
-      if (ctx.measureText(next).width > 322) {
-        ctx.fillText(line, x + 28, lineY);
+      if (ctx.measureText(next).width > 360) {
+        ctx.fillText(line, x + 178, lineY);
         line = `${word} `;
-        lineY += 30;
+        lineY += 24;
       } else {
         line = next;
       }
     });
-    ctx.fillText(line, x + 28, lineY);
+    ctx.fillText(line, x + 178, lineY);
 
     ctx.fillStyle = project.accent;
-    ctx.fillRect(x + 28, y + 452, 190, 44);
+    ctx.fillRect(x + 22, y + 180, 132, 38);
     ctx.fillStyle = "#020617";
-    ctx.font = "800 20px monospace";
-    ctx.fillText("Open repo", x + 52, y + 481);
+    ctx.font = "800 16px monospace";
+    ctx.fillText("Open repo", x + 38, y + 205);
   });
 
   for (let y = 0; y < canvas.height; y += 7) {
@@ -456,6 +459,7 @@ export default function Room3D() {
     renderer.shadowMap.enabled = false;
     renderer.shadowMap.autoUpdate = false;
     renderer.domElement.className = "room-canvas";
+    renderer.domElement.tabIndex = 0;
     container.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -469,8 +473,9 @@ export default function Room3D() {
     controls.minDistance = 3;
     controls.maxDistance = 12;
     controls.enablePan = false;
-    controls.rotateSpeed = 0.35;
-    controls.zoomSpeed = 0.65;
+    controls.enableZoom = false;
+    controls.rotateSpeed = 0.28;
+    controls.zoomSpeed = 0;
     controls.target.copy(CAMERA_TARGET);
     controls.update();
 
@@ -723,7 +728,7 @@ export default function Room3D() {
         position: SOURCE_SCREEN.rightMonitorPosition,
         rotation: [0, SOURCE_SCREEN.rightMonitorRotationY, 0],
         size: [SOURCE_SCREEN.monitorWidth, SOURCE_SCREEN.monitorHeight],
-        tooltip: "Project preview - Click to open Projects Window",
+        tooltip: "Featured project - Click to open Projects Window",
         onClick: focusProjectDashboard,
         hoverScale: 1,
       });
@@ -735,13 +740,13 @@ export default function Room3D() {
           makeTexture({
             width: 768,
             height: 920,
-            title: "Sony",
-            subtitle: "Product Landing Page",
-            lines: ["premium product website", "repo: SONY landing", "stack: React / CSS"],
+            title: "Projects",
+            subtitle: "Featured Work",
+            lines: ["updated from GitHub", "click to browse", "open repos from window"],
           }),
         position: SOURCE_SCREEN.arcadePosition,
         size: [SOURCE_SCREEN.arcadeWidth, SOURCE_SCREEN.arcadeHeight],
-        tooltip: "Project preview - Click to open Projects Window",
+        tooltip: "Featured project - Click to open Projects Window",
         onClick: focusProjectDashboard,
         hoverScale: 1,
       });
@@ -935,7 +940,7 @@ export default function Room3D() {
         hasEnteredRoom = true;
         setRoomEntered(true);
       }
-      renderer.domElement.requestPointerLock?.();
+      renderer.domElement.focus?.();
     }
 
     function handlePointerUp(event) {
@@ -963,8 +968,8 @@ export default function Room3D() {
       if (document.pointerLockElement !== renderer.domElement) return;
       const offset = camera.position.clone().sub(controls.target);
       const spherical = new THREE.Spherical().setFromVector3(offset);
-      spherical.theta -= event.movementX * 0.0022;
-      spherical.phi -= event.movementY * 0.0022;
+      spherical.theta -= event.movementX * 0.0014;
+      spherical.phi -= event.movementY * 0.0014;
       spherical.phi = Math.max(Math.PI / 6, Math.min(Math.PI / 2.15, spherical.phi));
       offset.setFromSpherical(spherical);
       camera.position.copy(controls.target).add(offset);
@@ -974,6 +979,7 @@ export default function Room3D() {
     function handleKeyDown(event) {
       const key = event.key.toLowerCase();
       if (["w", "a", "s", "d"].includes(key)) {
+        event.preventDefault();
         pressedKeys.add(key);
         setRoomEntered(true);
         hasEnteredRoom = true;
@@ -984,62 +990,60 @@ export default function Room3D() {
       pressedKeys.delete(event.key.toLowerCase());
     }
 
-    function shakeCamera(amplitude = 0.002, duration = 200) {
-      const start = performance.now();
-      const base = camera.position.clone();
-      const tick = (time) => {
-        const elapsed = time - start;
-        if (elapsed >= duration) {
-          camera.position.copy(base);
-          return;
-        }
-        const falloff = 1 - elapsed / duration;
-        camera.position.x = base.x + (Math.random() - 0.5) * amplitude * falloff;
-        camera.position.y = base.y + (Math.random() - 0.5) * amplitude * falloff;
-        window.requestAnimationFrame(tick);
-      };
-      window.requestAnimationFrame(tick);
+    function clampCameraRig() {
+      const targetBefore = controls.target.clone();
+      controls.target.x = THREE.MathUtils.clamp(controls.target.x, -3.8, 3.8);
+      controls.target.y = THREE.MathUtils.clamp(controls.target.y, 1.15, 3.35);
+      controls.target.z = THREE.MathUtils.clamp(controls.target.z, -4.8, 2.2);
+      const correction = controls.target.clone().sub(targetBefore);
+      camera.position.add(correction);
     }
 
     function moveCameraTo(position, target, duration = 1.2) {
       window.clearTimeout(cameraMoveDelay);
+      if (document.pointerLockElement === renderer.domElement) document.exitPointerLock?.();
+      gsap.killTweensOf(camera.position);
+      gsap.killTweensOf(controls.target);
       controls.enabled = false;
-      cameraMoveDelay = window.setTimeout(() => {
-        shakeCamera();
-        gsap.to(camera.position, {
-          x: position.x,
-          y: position.y,
-          z: position.z,
-          duration,
-          ease: "power2.inOut",
-        });
-        gsap.to(controls.target, {
-          x: target.x,
-          y: target.y,
-          z: target.z,
-          duration,
-          ease: "power2.inOut",
-          onComplete: () => {
-            controls.enabled = true;
-          },
-        });
-      }, 300);
+      gsap.to(camera.position, {
+        x: position.x,
+        y: position.y,
+        z: position.z,
+        duration,
+        ease: "power2.inOut",
+        onUpdate: () => controls.update(),
+      });
+      gsap.to(controls.target, {
+        x: target.x,
+        y: target.y,
+        z: target.z,
+        duration,
+        ease: "power2.inOut",
+        onUpdate: () => controls.update(),
+        onComplete: () => {
+          clampCameraRig();
+          controls.enabled = true;
+        },
+      });
     }
 
     function playIntroCamera() {
+      controls.enabled = false;
       gsap.to(camera.position, {
         x: CAMERA_DEFAULT.x,
         y: CAMERA_DEFAULT.y,
         z: CAMERA_DEFAULT.z,
-        duration: 3,
+        duration: 1.8,
         ease: "power3.out",
+        onUpdate: () => controls.update(),
       });
       gsap.to(controls.target, {
         x: CAMERA_TARGET.x,
         y: CAMERA_TARGET.y,
         z: CAMERA_TARGET.z,
-        duration: 3,
+        duration: 1.8,
         ease: "power3.out",
+        onUpdate: () => controls.update(),
         onComplete: () => {
           controls.enabled = true;
         },
@@ -1070,12 +1074,13 @@ export default function Room3D() {
           const move = new THREE.Vector3();
           if (pressedKeys.has("w")) move.add(forward);
           if (pressedKeys.has("s")) move.sub(forward);
-          if (pressedKeys.has("d")) move.sub(right);
-          if (pressedKeys.has("a")) move.add(right);
+          if (pressedKeys.has("d")) move.add(right);
+          if (pressedKeys.has("a")) move.sub(right);
           if (move.lengthSq() > 0) {
-            move.normalize().multiplyScalar(delta * 2.1);
+            move.normalize().multiplyScalar(delta * 1.55);
             camera.position.add(move);
             controls.target.add(move);
+            clampCameraRig();
           }
         }
       }
@@ -1141,7 +1146,7 @@ export default function Room3D() {
             </div>
             <div className="room-hud-pill">
               <MousePointer2 size={15} />
-              <span>Move mouse to look</span>
+              <span>Drag mouse to look</span>
             </div>
             <div className="room-hud-pill">
               <ExternalLink size={15} />
@@ -1151,7 +1156,7 @@ export default function Room3D() {
               {pointerLocked
                 ? "Esc exits mouse look"
                 : roomEntered
-                  ? "Click empty space to re-enter mouse look"
+                  ? "Explore mode active"
                   : "Click once to enter the room"}
             </div>
           </div>

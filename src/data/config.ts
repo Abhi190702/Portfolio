@@ -26,7 +26,7 @@ const config = {
     "react",
   ],
   author: "Abhijeet Ranjan",
-  email: "abhijitzende75@gmail.com",
+  email: "abhijeet.r1907@gmail.com",
   site: "https://abhijeeet.netlify.app",
 
   get ogImg() {

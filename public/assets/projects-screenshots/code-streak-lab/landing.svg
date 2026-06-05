@@ -1,0 +1,18 @@
+<svg width="1280" height="760" viewBox="0 0 1280 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="760" fill="#06110b"/>
+  <rect x="44" y="44" width="1192" height="672" rx="34" fill="#08160f" stroke="#22c55e" stroke-opacity="0.38" stroke-width="2"/>
+  <path d="M88 617C193 527 262 563 363 482C477 391 529 468 644 353C760 237 838 280 946 205C1048 134 1116 161 1192 101" stroke="#22c55e" stroke-width="8" stroke-linecap="round"/>
+  <path d="M88 617C193 527 262 563 363 482C477 391 529 468 644 353C760 237 838 280 946 205C1048 134 1116 161 1192 101" stroke="#22c55e" stroke-opacity="0.22" stroke-width="30" stroke-linecap="round"/>
+  <g opacity="0.24" stroke="#bbf7d0">
+    <path d="M112 168H520"/>
+    <path d="M112 214H426"/>
+    <path d="M112 260H468"/>
+    <path d="M112 306H386"/>
+  </g>
+  <rect x="760" y="392" width="368" height="184" rx="20" fill="#020617" stroke="#22c55e" stroke-opacity="0.44"/>
+  <text x="96" y="124" fill="#bbf7d0" font-family="monospace" font-size="28" font-weight="700">CODE STREAK LAB</text>
+  <text x="96" y="405" fill="#f8fafc" font-family="monospace" font-size="74" font-weight="800">DSA progress,</text>
+  <text x="96" y="486" fill="#f8fafc" font-family="monospace" font-size="74" font-weight="800">tracked daily.</text>
+  <text x="792" y="456" fill="#22c55e" font-family="monospace" font-size="28" font-weight="700">streak: active</text>
+  <text x="792" y="506" fill="#bbf7d0" font-family="monospace" font-size="22">graphs / topics / CF</text>
+</svg>
