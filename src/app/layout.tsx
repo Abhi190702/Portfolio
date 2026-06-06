@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter, Archivo_Black } from "next/font/google";
 import "./globals.css";
 import ElasticCursor from "@/components/ui/ElasticCursor";
 import Particles from "@/components/Particles";
@@ -46,18 +45,13 @@ export const metadata: Metadata = {
   },
 };
 
-const archivoBlack = Archivo_Black({
-  subsets: ["latin"],
-  weight: "400",
-});
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={[archivoBlack.className].join(" ")}>
+    <html lang="en">
       <head>
         <Script
           defer
