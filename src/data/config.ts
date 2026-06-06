@@ -33,6 +33,8 @@ const config = {
     return this.site + "/assets/seo/og-image.png";
   },
   social: {
+    github: "https://github.com/Abhi190702",
+    linkedin: "https://www.linkedin.com/in/abhijeet-ranjan-7056ab22a/",
     instagram: "https://www.instagram.com/abhi.lonelyfans/",
   },
 };

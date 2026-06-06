@@ -6,23 +6,25 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 import projects, { Project } from "@/data/projects";
-import { cn } from "@/lib/utils";
 
 const ProjectsSection = () => {
   return (
-    <section id="projects" className="max-w-7xl mx-auto min-h-screen px-4">
-      <Link href={"#projects"}>
-        <h2
-          className={cn(
-            "bg-clip-text text-4xl text-center text-transparent md:text-7xl pt-16",
-            "bg-gradient-to-b from-black/80 to-black/50",
-            "dark:bg-gradient-to-b dark:from-white/80 dark:to-white/20 dark:bg-opacity-50 mb-16"
-          )}
-        >
-          Projects
-        </h2>
-      </Link>
-      <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-3">
+    <section id="projects" className="relative z-10 mx-auto min-h-screen max-w-7xl px-4 py-24 md:px-8">
+      <div className="mx-auto max-w-3xl text-center">
+        <p className="font-mono text-xs uppercase tracking-[0.22em] text-zinc-500 dark:text-zinc-400">
+          Selected Work
+        </p>
+        <Link href={"#projects"}>
+          <h2 className="mt-3 font-display text-4xl font-semibold text-zinc-950 dark:text-white md:text-6xl">
+            Projects
+          </h2>
+        </Link>
+        <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-zinc-600 dark:text-zinc-400 md:text-base">
+          A tighter showcase of the repositories and products that best reflect
+          how I build.
+        </p>
+      </div>
+      <div className="mt-12 grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
@@ -41,9 +43,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Open ${project.title} on GitHub`}
-      className="group block w-full overflow-visible rounded-lg bg-transparent p-0 text-left"
+      className="group block w-full overflow-visible rounded-lg bg-transparent p-0 text-left focus-visible:outline-none"
     >
-      <article className="relative min-h-[390px] w-full overflow-hidden rounded-lg border border-white/10 bg-black shadow-xl shadow-black/20 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-white/25 group-focus-visible:-translate-y-1 group-focus-visible:border-white/35 group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-white/40">
+      <article className="relative min-h-[390px] w-full overflow-hidden rounded-lg border border-zinc-200 bg-zinc-950 shadow-xl shadow-black/10 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-zinc-400 group-focus-visible:-translate-y-1 group-focus-visible:border-zinc-400 group-focus-visible:ring-2 group-focus-visible:ring-zinc-400/50 dark:border-white/10 dark:bg-black dark:shadow-black/20 dark:group-hover:border-white/25">
         <div
           className="relative h-[230px] w-full overflow-hidden"
           style={{
